@@ -12,6 +12,12 @@ class NeumorphicButton: UIButton {
     
     public var bevel = 3
     
+    @IBInspectable
+    var cornerRadius: CGFloat = 20
+    
+    @IBInspectable
+    var shadowRadius: CGFloat = 2
+    
     override var isHighlighted: Bool {
         didSet { isHighlighted ? pressed() : released() }
     }
@@ -50,7 +56,7 @@ class NeumorphicButton: UIButton {
         self.layer.sublayers?[0].shadowOffset = CGSize(width: -bevel, height: -bevel)
     }
     
-    func addNeumorphicLayer(cornerRadius: CGFloat = 20.0, superView: UIView? = nil) {
+    func addNeumorphicLayer(superView: UIView? = nil) {
         let colorLight = UIColor(red: 227/255, green: 230/255, blue: 234/255, alpha: 1.0)
         let lightShadow = UIColor(red: 209/255, green: 217/255, blue: 230/255, alpha: 1.0).cgColor
         
@@ -65,8 +71,8 @@ class NeumorphicButton: UIButton {
         shadowLayer.cornerRadius = cornerRadius
         shadowLayer.cornerCurve = .continuous
         
-        self.layer.shadowRadius = 2
-        shadowLayer.shadowRadius = 2
+        self.layer.shadowRadius = shadowRadius
+        shadowLayer.shadowRadius = shadowRadius
         
         self.layer.shadowOpacity = 1
         shadowLayer.shadowOpacity = 1
